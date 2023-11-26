@@ -19,6 +19,7 @@ resource "google_project_iam_member" "tf_auth_manager" {
     "roles/iam.workloadIdentityPoolAdmin",
     "roles/iam.roleAdmin",
     "roles/iam.serviceAccountAdmin",
+    "roles/resourcemanager.projectIamAdmin"
   ])
   role    = each.key
   member  = google_service_account.tf_auth_manager.member
