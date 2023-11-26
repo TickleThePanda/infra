@@ -21,7 +21,8 @@ resource "google_project_iam_member" "tf_location_history_manager" {
     "roles/storage.admin",
     "roles/compute.publicIpAdmin",
     "roles/certificatemanager.editor",
-    "roles/artifactregistry.admin"
+    "roles/artifactregistry.admin",
+    "roles/iam.serviceAccountUser"
   ])
   role    = each.key
   member  = google_service_account.tf_location_history_manager.member
