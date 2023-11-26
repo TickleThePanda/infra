@@ -27,3 +27,23 @@ resource "google_iam_workload_identity_pool_provider" "terraform_pool_provider" 
 
   attribute_condition =  "attribute.tfc_organization_id == '${local.tf_organisation_id}'"
 }
+
+
+resource "google_iam_workload_identity_pool_provider" "github_pool_provider" {
+  project  = data.google_project.project.project_id
+  workload_identity_pool_id          = google_iam_workload_identity_pool.identity_pool.workload_identity_pool_id
+  workload_identity_pool_provider_id = "github"
+
+  attribute_mapping = {
+    "google.subject"       = "assertion.sub"
+    "attribute.actor"      = "assertion.actor"
+    "attribute.aud"        = "assertion.aud"
+    "attribute.repository" = "assertion.repository"
+  }
+
+  oidc {
+    issuer_uri = "https://token.actions.githubusercontent.com"
+  }
+
+  attribute_condition = "assertion.repository_owner=='TickleThePanda'"
+}
