@@ -19,6 +19,7 @@ resource "google_iam_workload_identity_pool_provider" "terraform_pool_provider" 
     "attribute.tfc_project_name"          = "assertion.terraform_project_name"
     "google.subject"                      = "assertion.terraform_workspace_id"
     "attribute.tfc_workspace_name"        = "assertion.terraform_workspace_name"
+    "attribute.repository"                = "assertion.repository"
   }
 
   oidc {
