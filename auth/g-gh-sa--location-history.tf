@@ -16,7 +16,8 @@ resource "google_service_account_iam_binding" "location_history_image_pusher" {
 resource "google_project_iam_member" "location_history_image_pusher" {
   project = data.google_project.project.project_id
   for_each = toset([
-    "roles/artifactregistry.writer"
+    "roles/artifactregistry.writer",
+    "roles/iam.serviceAccountTokenCreator"
   ])
   role    = each.key
   member  = google_service_account.location_history_image_pusher.member
