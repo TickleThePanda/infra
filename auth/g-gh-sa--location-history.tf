@@ -8,7 +8,7 @@ resource "google_service_account_iam_binding" "location_history_image_pusher" {
   service_account_id = google_service_account.location_history_image_pusher.name
   role = "roles/iam.workloadIdentityUser"
   members = [
-    "principal://iam.googleapis.com/${google_iam_workload_identity_pool.identity_pool.name}/attribute.repository/TickleThePanda/location-history",
+    "principalSet://iam.googleapis.com/${google_iam_workload_identity_pool.identity_pool.name}/attribute.repository/TickleThePanda/location-history",
   ]
 }
 
